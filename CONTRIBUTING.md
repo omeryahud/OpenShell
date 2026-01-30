@@ -88,6 +88,21 @@ mise run cli -- --help   # Run CLI with arguments
 mise run sandbox         # Run sandbox
 ```
 
+### Kubernetes Development
+
+The project uses [k3d](https://k3d.io/) for local Kubernetes development. All required tools (k3d, kubectl, skaffold, helm) are managed by mise.
+
+```bash
+mise run kube:start      # Create/start k3d cluster with local registry
+mise run kube:stop       # Stop cluster (preserves state)
+mise run kube:destroy    # Delete cluster completely
+
+mise run kube:deploy     # Build and deploy via skaffold
+mise run kube:dev        # Dev mode with hot reload
+```
+
+The cluster exposes port 50051 for the server and includes a local registry at `localhost:5000`.
+
 ## Code Style
 
 - **Rust**: Formatted with `rustfmt`, linted with Clippy (pedantic + nursery)
